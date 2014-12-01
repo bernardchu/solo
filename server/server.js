@@ -17,7 +17,7 @@ app.set('port', 3000);
 
 // Logging and parsing
 app.use(morgan('dev'));
-app.use(parser.json());
+app.use('/ingredients', parser.urlencoded());
 
 // GET and POST functions
 var toggleIngredient = function(req, res) {
