@@ -40,6 +40,26 @@ var toggleIngredient = function(req, res) {
   });
 };
 
+var newIngredient = function(req, res) {
+  for (var key in req.body) {
+    var ing = key;
+  }
+
+  var queryString = "\
+    INSERT INTO ingredients \
+    (name, in_stock) \
+    VALUES \
+    (?, 0);"
+
+  db.query(queryString, [ing], function(err, results){
+    if (err) {
+      res.send(304, ing + ' already exists.');
+    } else {
+      res.send(ing + ' added.');
+    }
+  });
+};
+
 var getIngredients = function(type, req, res) {
   if (type === 'all') {
     var where = ';';
@@ -92,6 +112,7 @@ var postDrink = function(req, res) {
 // Set up our routes
 // app.use("/classes", router);
 app.post('/ingredients', toggleIngredient);
+app.post('/ingredients/new', newIngredient);
 app.get('/ingredients/stock', function(req, res) {
   getIngredients('stock', req, res);
 });

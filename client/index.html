@@ -22,11 +22,14 @@
         <!-- <option value="gin">gin</option> -->
         <!-- <option value="whiskey">whiskey</option> -->
       </select>
-      <button onclick="app.postIngredients()"/>Toggle</button>
+      <button onclick="app.toggleIngredient()"/>Toggle</button>
       
       <h4>Drinks you can make:</h4>
       <div id="drinks"></div>
+
+      <button onclick="app.newIngredient()">Add a new ingredient type</button>
     </div>
+
     <script>
       $(function(){
         app.init();

@@ -4,7 +4,7 @@ var app = {
     this.getDrinks();
     this.getIngredients();
   },
-  postIngredients: function() {
+  toggleIngredient: function() {
     var ing = $('#allIngredients option:selected').val();
     $.ajax({
       type: "POST",
@@ -15,6 +15,20 @@ var app = {
         app.getDrinks();
       }
     });
+  },
+  newIngredient: function() {
+    var ing = prompt('What is the new ingredient\'s name?');
+    if (ing) {
+      $.ajax({
+        type: "POST",
+        url: '/ingredients/new',
+        data: ing,
+        success: function(res) {
+          console.log(res);
+          app.getIngredients();
+        }
+      });
+    }
   },
   getStock: function() {
     $.ajax({
