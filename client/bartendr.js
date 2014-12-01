@@ -19,7 +19,7 @@ var app = {
   getStock: function() {
     $.ajax({
       type: "GET",
-      url: '/ingredients',
+      url: '/ingredients/stock',
       success: function(res) {
         app.populateStock(res);
       }
@@ -28,7 +28,7 @@ var app = {
   getIngredients: function() {
     $.ajax({
       type: "GET",
-      url: '/allIngredients',
+      url: '/ingredients/all',
       success: function(res) {
         app.populateIngredients(res);
       }

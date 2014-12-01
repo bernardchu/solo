@@ -40,23 +40,14 @@ var toggleIngredient = function(req, res) {
   });
 };
 
-var getIngredients = function(req, res) {
-  var ingredientsQueryString = " \
-    SELECT name FROM ingredients \
-    WHERE in_stock=1; \
-  ";
-  db.query(ingredientsQueryString, function(err, results){
-    if (err) {
-      throw (err);
-    }
-    res.json(results);
-  });
-};
-
-var getAllIngredients = function(req, res) {
-  var ingredientsQueryString = " \
-    SELECT name FROM ingredients \
-  ";
+var getIngredients = function(type, req, res) {
+  if (type === 'all') {
+    var where = ';';
+  }
+  if (type === 'stock') {
+    var where = ' WHERE in_stock=1;'
+  }
+  var ingredientsQueryString = "SELECT name FROM ingredients" + where;
   db.query(ingredientsQueryString, function(err, results){
     if (err) {
       throw (err);
@@ -96,8 +87,12 @@ var getDrinks = function(req, res) {
 // Set up our routes
 // app.use("/classes", router);
 app.post('/ingredients', toggleIngredient);
-app.get('/ingredients', getIngredients);
-app.get('/allIngredients', getAllIngredients);
+app.get('/ingredients/stock', function(req, res) {
+  getIngredients('stock', req, res);
+});
+app.get('/ingredients/all', function(req, res) {
+  getIngredients('all', req, res);
+});
 app.get('/drinks', getDrinks);
 
 // Serve the client files
