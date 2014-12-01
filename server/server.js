@@ -53,7 +53,7 @@ var newIngredient = function(req, res) {
 
   db.query(queryString, [ing], function(err, results){
     if (err) {
-      res.send(304, ing + ' already exists.');
+      res.send(ing + ' already exists.');
     } else {
       res.send(ing + ' added.');
     }
