@@ -78,4 +78,16 @@ var app = {
       $('#drinks').append(drink);
     }
   },
+  addIngredientField: function() {
+    var ing = $('#allIngredients').clone();
+    ing.removeAttr('id');
+    ing.addClass('recipe');
+    $('#recipe').append(ing);
+  },
+  removeIngredientField: function() {
+    var len = $('#recipe').children().length;
+    if (len) {
+      $('#recipe').children().last().remove();
+    }
+  }
 }
