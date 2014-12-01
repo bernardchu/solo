@@ -1,23 +1,34 @@
 var app = {
   init: function() {
-    this.getIngredients();
+    this.getStock();
     this.getDrinks();
+    this.getIngredients();
   },
   postIngredients: function() {
-    var ing = $('#inStock option:selected').val();
+    var ing = $('#allIngredients option:selected').val();
     $.ajax({
       type: "POST",
       url: '/ingredients',
       data: ing,
       success: function(res) {
-        app.init();
+        app.getStock();
+        app.getDrinks();
+      }
+    });
+  },
+  getStock: function() {
+    $.ajax({
+      type: "GET",
+      url: '/ingredients',
+      success: function(res) {
+        app.populateStock(res);
       }
     });
   },
   getIngredients: function() {
     $.ajax({
       type: "GET",
-      url: '/ingredients',
+      url: '/allIngredients',
       success: function(res) {
         app.populateIngredients(res);
       }
@@ -32,11 +43,18 @@ var app = {
       }
     });
   },
-  populateIngredients: function(data) {
+  populateStock: function(data) {
     $('#ingredients').children().remove();
     for (var i = 0; i < data.length; i++) {
       var ing = '<li>' + data[i].name + '</li>'
       $('#ingredients').append(ing);
+    }
+  },
+  populateIngredients: function(data) {
+    $('#allIngredients').children().remove();
+    for (var i = 0; i < data.length; i++) {
+      var ing = '<option value="' + data[i].name + '">' + data[i].name + '</option>'
+      $('#allIngredients').append(ing);
     }
   },
   populateDrinks: function(data) {

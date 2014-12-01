@@ -53,6 +53,18 @@ var getIngredients = function(req, res) {
   });
 };
 
+var getAllIngredients = function(req, res) {
+  var ingredientsQueryString = " \
+    SELECT name FROM ingredients \
+  ";
+  db.query(ingredientsQueryString, function(err, results){
+    if (err) {
+      throw (err);
+    }
+    res.json(results);
+  });
+};
+
 var getDrinks = function(req, res) {
   var drinksQueryString = " \
     select d.name from drinks d \
@@ -85,6 +97,7 @@ var getDrinks = function(req, res) {
 // app.use("/classes", router);
 app.post('/ingredients', toggleIngredient);
 app.get('/ingredients', getIngredients);
+app.get('/allIngredients', getAllIngredients);
 app.get('/drinks', getDrinks);
 
 // Serve the client files
