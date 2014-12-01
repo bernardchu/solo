@@ -18,27 +18,35 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Bartendr
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Cocktail suggestions for the mixology enthusiast
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Bartendr keeps track of your home bar inventory and tells you what you can make at this moment. Our database of cocktails ensures that with a well-stocked bar, you won't be mixing the same drinks night after night. Whether you're hosting a party for 100 or just looking for a nightcap for one, just ask Bartendr and you're sure to find a tasty new drink to try.
 
 ## Problem ##
   > Describe the problem your product solves.
+  You're a cocktail enthusiast and you've accumulated many liquors and liqueurs over the years to make various different cocktails, but you don't feel like going to a tired old recipe. You want to try something new but you want to be able to make it now!
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Bartendr tracks your inventory and gives you a list of all the cocktails that you can make from those ingredients.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  Bartendr opens up a whole new world of cocktails for the home mixology enthusiast.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Just make an account, input your current inventory, and get mixing.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  I've got three new favorite cocktails and I tried them all within the last week. I never would have heard of any of them without Bartendr.
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
