@@ -36,9 +36,8 @@ var toggleIngredient = function(req, res) {
     if (err) {
       throw (err);
     }
-    res.json(results);
+    res.send(ing + ' updated.');
   });
-  res.send(ing + ' updated.');
 };
 
 var getIngredients = function(req, res) {
