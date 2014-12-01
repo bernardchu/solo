@@ -1,3 +1,18 @@
+body {
+  width:80%;
+  margin:auto;
+}
+
 h1 {
   
+}
+
+#ingredientsPane {
+  float:left;
+  width:30%;
+}
+
+#drinksPane {
+  float:right;
+  width:40%;
 }

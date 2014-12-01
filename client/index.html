@@ -11,8 +11,8 @@
   </head>
   <body>
 
-    <div id="main">
-      <h1>bartendr</h1>
+    <h1>bartendr</h1>
+    <div id="ingredientsPane">
 
       <h4>Ingredients in stock:</h4>
       <div id="ingredients"></div>
@@ -23,11 +23,11 @@
         <!-- <option value="whiskey">whiskey</option> -->
       </select>
       <button onclick="app.toggleIngredient()"/>Toggle</button>
-      
+      <button onclick="app.newIngredient()">Add a new ingredient type</button>
+    </div>
+    <div id="drinksPane">
       <h4>Drinks you can make:</h4>
       <div id="drinks"></div>
-
-      <button onclick="app.newIngredient()">Add a new ingredient type</button>
     </div>
 
     <script>
