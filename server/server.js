@@ -20,16 +20,22 @@ app.use(morgan('dev'));
 app.use(parser.json());
 
 // GET and POST functions
-var toggleIngredient = function() {
-  console.log('toggleIngredient called');
+var toggleIngredient = function(req, res) {
+  console.log(req.body);
 };
 
-var getIngredients = function() {
+var getIngredients = function(req, res) {
   console.log('getIngredients called');
 };
 
-var getDrinks = function() {
+var getDrinks = function(req, res) {
   console.log('getDrinks called');
+  db.query("SELECT * FROM drinks", function(err, results){
+    if (err) {
+      throw (err);
+    }
+    res.json(results);
+  });
 };
 // Set up our routes
 // app.use("/classes", router);
