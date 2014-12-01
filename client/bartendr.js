@@ -18,8 +18,14 @@ var app = {
       type: "GET",
       url: '/ingredients',
       success: function(res) {
-        console.log(res);
+        app.populateIngredients(res);
       }
     });
+  },
+  populateIngredients: function(data) {
+    for (var i = 0; i < data.length; i++) {
+      var ing = '<li>' + data[i].name + '</li>'
+      $('#ingredients').append(ing);
+    }
   }
 }
