@@ -25,31 +25,39 @@ var toggleIngredient = function(req, res) {
 };
 
 var getIngredients = function(req, res) {
-  console.log('getIngredients called');
+  var ingredientsQueryString = " \
+    SELECT name FROM ingredients \
+    WHERE in_stock=1; \
+  "
+  db.query(ingredientsQueryString, function(err, results){
+    if (err) {
+      throw (err);
+    }
+    res.json(results);
+  });
 };
 
 var drinksQueryString = " \
-select d.name from drinks d \
-left join \
-(select di.drink_id as did, count(*) as num_in_stock \
-from drink_ingredient di join ingredients i \
-on di.ingredient_id = i.id \
-join drinks d \
-on d.id = di.drink_id \
-where i.in_stock = 1 \
-group by drink_id) as nis \
-on nis.did = d.id \
-left join \
-(select d.id as drid, count(*) as num_ingredients \
-from drinks d join drink_ingredient di \
-on d.id = di.drink_id \
-group by d.id) as ni \
-on ni.drid = d.id \
-where ni.num_ingredients = nis.num_in_stock; \
+  select d.name from drinks d \
+  left join \
+  (select di.drink_id as did, count(*) as num_in_stock \
+  from drink_ingredient di join ingredients i \
+  on di.ingredient_id = i.id \
+  join drinks d \
+  on d.id = di.drink_id \
+  where i.in_stock = 1 \
+  group by drink_id) as nis \
+  on nis.did = d.id \
+  left join \
+  (select d.id as drid, count(*) as num_ingredients \
+  from drinks d join drink_ingredient di \
+  on d.id = di.drink_id \
+  group by d.id) as ni \
+  on ni.drid = d.id \
+  where ni.num_ingredients = nis.num_in_stock; \
 "
 
 var getDrinks = function(req, res) {
-  console.log('getDrinks called');
   db.query(drinksQueryString, function(err, results){
     if (err) {
       throw (err);
