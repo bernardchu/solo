@@ -5,7 +5,7 @@ var app = {
     this.getIngredients();
   },
   toggleIngredient: function() {
-    var ing = $('#allIngredients option:selected').val();
+    var ing = $('.allIngredients option:selected').val();
     $.ajax({
       type: "POST",
       url: '/ingredients',
@@ -65,10 +65,10 @@ var app = {
     }
   },
   populateIngredients: function(data) {
-    $('#allIngredients').children().remove();
+    $('.allIngredients').children().remove();
     for (var i = 0; i < data.length; i++) {
       var ing = '<option value="' + data[i].name + '">' + data[i].name + '</option>'
-      $('#allIngredients').append(ing);
+      $('.allIngredients').append(ing);
     }
   },
   populateDrinks: function(data) {
@@ -78,16 +78,21 @@ var app = {
       $('#drinks').append(drink);
     }
   },
-  addIngredientField: function() {
-    var ing = $('#allIngredients').clone();
-    ing.removeAttr('id');
-    ing.addClass('recipe');
-    $('#recipe').append(ing);
-  },
-  removeIngredientField: function() {
-    var len = $('#recipe').children().length;
-    if (len) {
-      $('#recipe').children().last().remove();
+  newRecipe: function() {
+    var ingredients = $('#recipe').val();
+    if (!ingredients.length) {
+      alert('Recipe should contain at least one ingredient.');
+      return;
     }
+    console.log(ingredients);
+    // $.ajax({
+    //   type: "POST",
+    //   url: '/drinks',
+    //   data: postData,
+    //   success: function(res) {
+    //     console.log(res);
+    //     app.getDrinks();
+    //   }
+    // });
   }
 }

@@ -18,10 +18,7 @@
       <div id="ingredients"></div>
       
       <h4>Update your inventory (add or remove):</h4>
-      <select id="allIngredients">
-        <!-- <option value="gin">gin</option> -->
-        <!-- <option value="whiskey">whiskey</option> -->
-      </select>
+      <select class="allIngredients"></select>
       <button onclick="app.toggleIngredient()"/>Toggle</button>
       <button onclick="app.newIngredient()">Add a new ingredient type</button>
     </div>
@@ -30,11 +27,10 @@
       <div id="drinks"></div>
       <h4>Add a new drink recipe:</h4>
       <h6>Add ingredients</h6>
-      <div id="recipe"></div>
-      <button id="addIngredientField" onclick="app.addIngredientField()">+</button>
-      <button id="removeIngredientField" onclick="app.removeIngredientField()">-</button>
+      <select id="recipe" class="allIngredients" multiple></select>
       <br/>
-      <textarea id="instructions">Recipe instructions here</textarea>
+      <textarea id="instructions">Recipe instructions here</textarea><br/>
+      <button id="submitRecipe" onclick="app.newRecipe()">Submit</button>
     </div>
 
     <script>
