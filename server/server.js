@@ -22,6 +22,7 @@ app.use(parser.json());
 // GET and POST functions
 var toggleIngredient = function(req, res) {
   console.log(req.body);
+  res.send();
 };
 
 var getIngredients = function(req, res) {

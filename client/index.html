@@ -14,9 +14,13 @@
     <div id="main">
       <h1>bartendr</h1>
       <div id="ingredients"></div>
-      <form action="/ingredients" id="send" method="post">
-        form goes here
-      </form>
+      <!-- <form action="/ingredients" id="send" method="post"> -->
+        <select id="inStock">
+          <option value="gin">gin</option>
+          <option value="whiskey">whiskey</option>
+        </select>
+        <input type="submit" onclick="app.postIngredients()"/>
+      <!-- </form> -->
       <div id="drinks"></div>
     </div>
     <script>
