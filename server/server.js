@@ -84,6 +84,11 @@ var getDrinks = function(req, res) {
     res.json(results);
   });
 };
+
+var postDrink = function(req, res) {
+  console.log(req.body);
+};
+
 // Set up our routes
 // app.use("/classes", router);
 app.post('/ingredients', toggleIngredient);
@@ -94,6 +99,7 @@ app.get('/ingredients/all', function(req, res) {
   getIngredients('all', req, res);
 });
 app.get('/drinks', getDrinks);
+app.post('/drinks', postDrink);
 
 // Serve the client files
 app.use(express.static(__dirname + "../../client"));
