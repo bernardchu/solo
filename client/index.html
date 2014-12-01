@@ -6,21 +6,23 @@
     <link rel="stylesheet" href="styles.css">
 
     <!-- dependencies -->
-    <script src="scripts/bartendr.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="bartendr.js"></script>
   </head>
   <body>
 
     <div id="main">
       <h1>bartendr</h1>
+      <div id="ingredients"></div>
       <form action="/ingredients" id="send" method="post">
         form goes here
       </form>
       <div id="drinks"></div>
     </div>
     <script>
-      // $(function(){
-      //   app.init();
-      // });
+      $(function(){
+        app.init();
+      });
     </script>    
   </body>
 </html>
