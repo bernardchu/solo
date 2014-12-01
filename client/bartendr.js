@@ -80,19 +80,23 @@ var app = {
   },
   newRecipe: function() {
     var ingredients = $('#recipe').val();
-    if (!ingredients.length) {
+    if (!ingredients) {
       alert('Recipe should contain at least one ingredient.');
       return;
     }
     console.log(ingredients);
-    // $.ajax({
-    //   type: "POST",
-    //   url: '/drinks',
-    //   data: postData,
-    //   success: function(res) {
-    //     console.log(res);
-    //     app.getDrinks();
-    //   }
-    // });
+    var postData = {
+      ingredients: ingredients,
+      instructions: $("#instructions").val()
+    };
+    $.ajax({
+      type: "POST",
+      url: '/drinks',
+      data: postData,
+      success: function(res) {
+        console.log(res);
+        app.getDrinks();
+      }
+    });
   }
 }

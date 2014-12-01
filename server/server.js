@@ -18,6 +18,8 @@ app.set('port', 3000);
 // Logging and parsing
 app.use(morgan('dev'));
 app.use('/ingredients', parser.urlencoded());
+app.use('/drinks', parser.urlencoded());
+
 
 // GET and POST functions
 var toggleIngredient = function(req, res) {
@@ -107,6 +109,8 @@ var getDrinks = function(req, res) {
 
 var postDrink = function(req, res) {
   console.log(req.body);
+  console.log(req.body.ingredients);
+  console.log(req.body.instructions);
 };
 
 // Set up our routes
