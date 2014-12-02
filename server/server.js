@@ -108,9 +108,41 @@ var getDrinks = function(req, res) {
 };
 
 var postDrink = function(req, res) {
-  console.log(req.body);
-  console.log(req.body.ingredients);
-  console.log(req.body.instructions);
+  var insertDrinkQuery = "INSERT INTO drinks (name, instructions) VALUES (?, ?)";
+  db.query(insertDrinkQuery, [req.body.name, req.body.instructions], function(err, results){
+    if (err) {
+      res.send('That name is taken.');
+    } else {
+      var newID = results.insertId;
+      // format the array in the request body to look like "gin","whiskey","whatever" for the where statement
+      var ingredientsString = JSON.stringify(req.body.ingredients);
+      ingredientsString = ingredientsString.slice(1, ingredientsString.length-1);
+      var getIngredientIDsQuery = "\
+        SELECT id FROM ingredients \
+        WHERE name IN (" + ingredientsString + ")";
+      db.query(getIngredientIDsQuery, function(err, results) {
+        if (err) {
+          throw err;
+        }
+        var insertDrinkIngredientQuery = " \
+          INSERT INTO drink_ingredient \
+          (drink_id, ingredient_id) \
+          VALUES\
+        ";
+        for (var i = 0; i < results.length; i++) {
+          insertDrinkIngredientQuery += ' (' + newID + ',' + results[i].id + '),';
+        }
+        // trim off trailing comma
+        insertDrinkIngredientQuery = insertDrinkIngredientQuery.slice(0,insertDrinkIngredientQuery.length-1);
+        console.log(insertDrinkIngredientQuery);
+        db.query(insertDrinkIngredientQuery, function(err, results) {
+          if (err) { throw err; }
+          res.send(201);
+
+        });
+      });
+    }
+  });
 };
 
 // Set up our routes
