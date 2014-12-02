@@ -15,10 +15,14 @@
     <div id="ingredientsPane" ng-controller="IngredientController">
 
       <h4>Ingredients in stock:</h4>
-      <div id="ingredients"></div>
+      <div id="stock">
+        <li ng-repeat="ingredient in ingredients | filter:{'in_stock':1}">{{ ingredient.name }}</li>
+      </div>
       
       <h4>Update your inventory (add or remove):</h4>
-      <select class="allIngredients"></select>
+      <select class="allIngredients">
+        <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
+      </select>
       <button onclick="app.toggleIngredient()"/>Toggle</button>
       <button onclick="app.newIngredient()">Add a new ingredient type</button>
     </div>
@@ -27,14 +31,18 @@
       <div id="drinks">
         <li ng-repeat="drink in drinks">{{ drink.name }}</li>
       </div>
-      <h4>Add a new drink recipe:</h4>
-      <h6>Name your drink</h6>
-      <input id="drinkName" type="text" maxlength="100"/>
-      <h6>Add ingredients</h6>
-      <select id="recipe" class="allIngredients" multiple></select>
-      <br/>
-      <textarea id="instructions">Recipe instructions here</textarea><br/>
-      <button id="submitRecipe" onclick="app.newRecipe()">Submit</button>
+      <div id="recipePane" ng-controller="IngredientController">
+        <h4>Add a new drink recipe:</h4>
+        <h6>Name your drink</h6>
+        <input id="drinkName" type="text" maxlength="100"/>
+        <h6>Add ingredients</h6>
+        <select id="recipe" class="allIngredients" multiple>
+          <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
+        </select>
+        <br/>
+        <textarea id="instructions">Recipe instructions here</textarea><br/>
+        <button id="submitRecipe" onclick="app.newRecipe()">Submit</button>
+      </div>
     </div> 
   </body>
 </html>

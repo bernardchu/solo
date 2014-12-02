@@ -6,7 +6,6 @@ angular.module('bartendr', [])
       url: '/drinks'
     })
     .then(function(res){
-      console.log(res);
       return res.data;
     });
   };
@@ -15,10 +14,10 @@ angular.module('bartendr', [])
   };
 })
 .factory('Ingredients',function($http) {
-  var getStock = function() {
+  var getIngredients = function() {
     return $http({
       method: 'GET',
-      url: '/ingredients/stock'
+      url: '/ingredients'
     })
     .then(function(res){
       console.log(res);
@@ -26,7 +25,7 @@ angular.module('bartendr', [])
     });
   };
   return {
-    getStock: getStock
+    getIngredients: getIngredients
   };
 })
 .controller('DrinkController', function($scope, Drinks) {
@@ -34,10 +33,13 @@ angular.module('bartendr', [])
     .then(function(drinks) {
       $scope.drinks = drinks;
     });
-  console.log($scope.drinks);
 })
 .controller('IngredientController',function($scope, Ingredients) {
-  $scope.stock = Ingredients.getStock();
+  Ingredients.getIngredients()
+    .then(function(ingredients) {
+      $scope.ingredients = ingredients;
+    });
+    console.log
 });
 
 /* --------------Old jQuery version */

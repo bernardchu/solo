@@ -62,14 +62,15 @@ var newIngredient = function(req, res) {
   });
 };
 
-var getIngredients = function(type, req, res) {
-  if (type === 'all') {
-    var where = ';';
-  }
-  if (type === 'stock') {
-    var where = ' WHERE in_stock=1;'
-  }
-  var ingredientsQueryString = "SELECT name FROM ingredients" + where;
+var getIngredients = function(req, res) {
+// var getIngredients = function(type, req, res) {
+  // if (type === 'all') {
+  //   var where = ';';
+  // }
+  // if (type === 'stock') {
+  //   var where = ' WHERE in_stock=1;'
+  // }
+  var ingredientsQueryString = "SELECT name, in_stock FROM ingredients;";
   db.query(ingredientsQueryString, function(err, results){
     if (err) {
       throw (err);
@@ -149,12 +150,14 @@ var postDrink = function(req, res) {
 // app.use("/classes", router);
 app.post('/ingredients', toggleIngredient);
 app.post('/ingredients/new', newIngredient);
-app.get('/ingredients/stock', function(req, res) {
-  getIngredients('stock', req, res);
-});
-app.get('/ingredients/all', function(req, res) {
-  getIngredients('all', req, res);
-});
+
+app.get('/ingredients', getIngredients);
+// app.get('/ingredients/stock', function(req, res) {
+//   getIngredients('stock', req, res);
+// });
+// app.get('/ingredients/all', function(req, res) {
+//   getIngredients('all', req, res);
+// });
 app.get('/drinks', getDrinks);
 app.post('/drinks', postDrink);
 
