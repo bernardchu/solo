@@ -139,7 +139,8 @@ var postDrink = function(req, res) {
         console.log(insertDrinkIngredientQuery);
         db.query(insertDrinkIngredientQuery, function(err, results) {
           if (err) { throw err; }
-          res.send(201);
+          // res.send(201);
+          getDrinks(req, res);
 
         });
       });

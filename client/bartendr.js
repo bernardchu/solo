@@ -9,8 +9,38 @@ angular.module('bartendr', [])
       return res.data;
     });
   };
+
+  var postDrink = function($scope) {
+    if (!$scope.recipeIngredients) {
+      alert('Recipe should contain at least one ingredient.');
+      return;
+    }
+    if (!$scope.instructions) {
+      alert('Please provide instructions for your recipe.');
+      return;
+    }
+    if (!$scope.drinkName) {
+      alert('Please name your drink.');
+      return;
+    }
+    var data = {
+      instructions: $scope.instructions,
+      name: $scope.drinkName,
+      ingredients: $scope.recipeIngredients
+    };
+    return $http({
+      method: 'POST',
+      url: '/drinks',
+      data: data
+    })
+    .then(function(res){
+      return res.data;
+    });
+  };
+
   return {
-    getDrinks: getDrinks
+    getDrinks: getDrinks,
+    postDrink: postDrink
   };
 })
 .factory('Ingredients',function($http) {
@@ -77,11 +107,17 @@ angular.module('bartendr', [])
       });
   };
 })
-.controller('RecipeController', function($scope, Ingredients) {
+.controller('RecipeController', function($scope, Ingredients, Drinks) {
   Ingredients.getIngredients()
     .then(function(ingredients) {
       $scope.ingredients = ingredients;
     });
+  $scope.newRecipe = function() {
+    Drinks.postDrink($scope)
+      .then(function(drinks) {
+        console.log(drinks)
+      });
+  };
 });
 
 /* --------------Old jQuery version */
