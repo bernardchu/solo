@@ -28,6 +28,21 @@
       </select>
       <button ng-click="toggleIngredient()"/>Toggle</button>
       <button ng-click="newIngredient()">Add a new ingredient type</button>
+
+      <table ng-controller="NextIngredientController">
+        <thead>
+          <tr>
+            <td>Ingredient</td><td># of drinks unlocked</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="ingredient in nextIngredient">
+            <td>{{ ingredient.name }}</td><td>{{ ingredient.additional_drinks }}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+
     </div>
 
 

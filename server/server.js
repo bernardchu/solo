@@ -109,6 +109,44 @@ var getDrinks = function(req, res) {
   });
 };
 
+var getBestNextIngredient = function(req, res) {
+  var nextBestIngQuery = " \
+    select i.name, count(*) as additional_drinks from ingredients i \
+    join \
+    (select * from drink_ingredient di \
+    join \
+    (select * from drinks d \
+    left join \
+    (select di.drink_id as did, count(*) as num_in_stock \
+    from drink_ingredient di join ingredients i \
+    on di.ingredient_id = i.id \
+    join drinks d \
+    on d.id = di.drink_id \
+    where i.in_stock = 1 \
+    group by drink_id) as nis \
+    on nis.did = d.id \
+    left join \
+    (select d.id as drid, count(*) as num_ingredients \
+    from drinks d join drink_ingredient di \
+    on d.id = di.drink_id \
+    group by d.id) as ni \
+    on ni.drid = d.id \
+    where ni.num_ingredients = nis.num_in_stock + 1) as almost \
+    on di.drink_id = almost.did) as foo \
+    on i.id = foo.ingredient_id \
+    where i.in_stock = 0 \
+    group by i.name \
+    order by additional_drinks desc; \
+  "
+
+  db.query(nextBestIngQuery, function(err, results){
+    if (err) {
+      throw (err);
+    }
+    res.json(results);
+  });
+};
+
 var postDrink = function(req, res) {
   var insertDrinkQuery = "INSERT INTO drinks (name, instructions) VALUES (?, ?)";
   db.query(insertDrinkQuery, [req.body.name, req.body.instructions], function(err, results){
@@ -154,6 +192,7 @@ app.post('/ingredients', toggleIngredient);
 app.post('/ingredients/new', newIngredient);
 
 app.get('/ingredients', getIngredients);
+app.get('/ingredients/next', getBestNextIngredient);
 // app.get('/ingredients/stock', function(req, res) {
 //   getIngredients('stock', req, res);
 // });

@@ -76,11 +76,23 @@ angular.module('bartendr', [])
     .then(function(res){
       return res.data;
     });
-  }
+  };
+
+  var nextIngredient = function() {
+    return $http({
+      method: 'GET',
+      url: '/ingredients/next'
+    })
+    .then(function(res){
+      return res.data;
+    });
+  };
+
   return {
     getIngredients: getIngredients,
     toggleIngredient: toggleIngredient,
-    newIngredient: newIngredient
+    newIngredient: newIngredient,
+    nextIngredient: nextIngredient
   };
 })
 .controller('DrinkController', function($rootScope, $scope, Drinks) {
@@ -89,7 +101,6 @@ angular.module('bartendr', [])
       $rootScope.drinks = drinks;
     });
   $scope.toggleInstructions = function(element) {
-    console.log(element);
     $scope.instructionsDisplay = element.instructions;
   };
   $scope.instructionsDisplay = 'Instructions will display here.'
@@ -128,6 +139,12 @@ angular.module('bartendr', [])
         $rootScope.drinks = drinks;
       });
   };
+})
+.controller('NextIngredientController', function($rootScope, $scope, Ingredients) {
+  Ingredients.nextIngredient()
+    .then(function(ingredients) {
+      $rootScope.nextIngredient = ingredients;
+    });
 });
 
 /* --------------Old jQuery version */
