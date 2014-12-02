@@ -15,6 +15,10 @@ select {
   display:block;
 }
 
+thead th {
+  font-weight:800;
+}
+
 .instructions {
   display:none;
   list-style-type: none;
