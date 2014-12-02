@@ -86,6 +86,7 @@ var app = {
     }
     console.log(ingredients);
     var postData = {
+      name: $("#drinkName").val(),
       ingredients: ingredients,
       instructions: $("#instructions").val()
     };
