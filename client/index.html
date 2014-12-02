@@ -1,18 +1,18 @@
 <!doctype html>
-<html>
+<html ng-app="bartendr">
   <head>
     <meta charset="utf-8">
     <title>bartendr</title>
     <link rel="stylesheet" href="styles.css">
 
     <!-- dependencies -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="./bower_components/angular/angular.min.js"></script>
     <script src="bartendr.js"></script>
   </head>
   <body>
 
     <h1>bartendr</h1>
-    <div id="ingredientsPane">
+    <div id="ingredientsPane" ng-controller="IngredientController">
 
       <h4>Ingredients in stock:</h4>
       <div id="ingredients"></div>
@@ -22,9 +22,11 @@
       <button onclick="app.toggleIngredient()"/>Toggle</button>
       <button onclick="app.newIngredient()">Add a new ingredient type</button>
     </div>
-    <div id="drinksPane">
+    <div id="drinksPane" ng-controller="DrinkController">
       <h4>Drinks you can make:</h4>
-      <div id="drinks"></div>
+      <div id="drinks">
+        <li ng-repeat="drink in drinks">{{ drink.name }}</li>
+      </div>
       <h4>Add a new drink recipe:</h4>
       <h6>Name your drink</h6>
       <input id="drinkName" type="text" maxlength="100"/>
@@ -33,12 +35,6 @@
       <br/>
       <textarea id="instructions">Recipe instructions here</textarea><br/>
       <button id="submitRecipe" onclick="app.newRecipe()">Submit</button>
-    </div>
-
-    <script>
-      $(function(){
-        app.init();
-      });
-    </script>    
+    </div> 
   </body>
 </html>

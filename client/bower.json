@@ -1,0 +1,21 @@
+{
+  "name": "bartendr",
+  "version": "0.0.1",
+  "homepage": "https://github.com/bernardchu/2014-10-solo",
+  "authors": [
+    "Bernard Chu <bernard.chu@yahoo.com>"
+  ],
+  "description": "bartendr",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.4"
+  }
+}
