@@ -37,7 +37,7 @@
         <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
       </div>
       <h6>Click on a drink above to display instructions below</h6>
-      {{ instructions }}
+      {{ instructionsDisplay }}
 
       <div id="recipePane" ng-controller="RecipeController">
         <h4>Add a new drink recipe:</h4>

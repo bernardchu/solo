@@ -90,9 +90,9 @@ angular.module('bartendr', [])
     });
   $scope.toggleInstructions = function(element) {
     console.log(element);
-    $scope.instructions = element.instructions;
+    $scope.instructionsDisplay = element.instructions;
   };
-  $scope.instructions = 'Instructions will display here.'
+  $scope.instructionsDisplay = 'Instructions will display here.'
 })
 .controller('IngredientController',function($rootScope, $scope, Ingredients, Drinks) {
   Ingredients.getIngredients()
