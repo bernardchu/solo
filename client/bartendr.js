@@ -35,9 +35,22 @@ angular.module('bartendr', [])
       return res.data;
     });
   };
+
+  var newIngredient = function() {
+    var ing = prompt('What is the new ingredient\'s name?');
+    return $http({
+      method: 'POST',
+      url: '/ingredients/new',
+      data: { ingredient:ing }
+    })
+    .then(function(res){
+      return res.data;
+    });
+  }
   return {
     getIngredients: getIngredients,
-    toggleIngredient: toggleIngredient
+    toggleIngredient: toggleIngredient,
+    newIngredient: newIngredient
   };
 })
 .controller('DrinkController', function($scope, Drinks) {
@@ -53,6 +66,12 @@ angular.module('bartendr', [])
     });
   $scope.toggleIngredient = function(){
     Ingredients.toggleIngredient($scope)
+      .then(function(ingredients) {
+        $scope.ingredients = ingredients;
+      });
+  };
+  $scope.newIngredient = function(){
+    Ingredients.newIngredient()
       .then(function(ingredients) {
         $scope.ingredients = ingredients;
       });

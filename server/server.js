@@ -24,7 +24,6 @@ app.use(parser.json());
 
 // GET and POST functions
 var toggleIngredient = function(req, res) {
-  console.log(req.body);
   var ing = req.body.ingredient;
   if (!ing) {
     res.send(400,'Bad request');
@@ -47,9 +46,7 @@ var toggleIngredient = function(req, res) {
 };
 
 var newIngredient = function(req, res) {
-  for (var key in req.body) {
-    var ing = key;
-  }
+  var ing = req.body.ingredient;
 
   var queryString = "\
     INSERT INTO ingredients \
@@ -61,7 +58,7 @@ var newIngredient = function(req, res) {
     if (err) {
       res.send(ing + ' already exists.');
     } else {
-      res.send(ing + ' added.');
+      getIngredients(req,res);
     }
   });
 };
