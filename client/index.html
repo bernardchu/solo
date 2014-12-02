@@ -4,9 +4,13 @@
     <meta charset="utf-8">
     <title>bartendr</title>
     <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <!-- dependencies -->
     <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/hammerjs/hammer.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
     <script src="bartendr.js"></script>
   </head>
   <body>
@@ -65,7 +69,7 @@
         <select id="recipe" class="allIngredients" multiple ng-model="recipeIngredients">
           <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
         </select>
-        
+        <br/>
         <textarea id="instructions" ng-model="instructions">Recipe instructions here</textarea><br/>
         <button id="submitRecipe" ng-click="newRecipe()">Submit</button>
       </div>
