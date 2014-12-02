@@ -40,15 +40,15 @@
         <h4>Add a new drink recipe:</h4>
 
         <h6>Name your drink</h6>
-        <input id="drinkName" type="text" maxlength="100"/>
+        <input id="drinkName" type="text" maxlength="100" ng-model="drinkName"/>
 
         <h6>Add ingredients</h6>
-        <select id="recipe" class="allIngredients" multiple>
+        <select id="recipe" class="allIngredients" multiple ng-model="recipeIngredients">
           <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
         </select>
         
-        <textarea id="instructions">Recipe instructions here</textarea><br/>
-        <button id="submitRecipe" onclick="app.newRecipe()">Submit</button>
+        <textarea id="instructions" ng-model="instructions">Recipe instructions here</textarea><br/>
+        <button id="submitRecipe" ng-click="newRecipe()">Submit</button>
       </div>
     </div> 
 

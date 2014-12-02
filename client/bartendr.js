@@ -76,6 +76,12 @@ angular.module('bartendr', [])
         $scope.ingredients = ingredients;
       });
   };
+})
+.controller('RecipeController', function($scope, Ingredients) {
+  Ingredients.getIngredients()
+    .then(function(ingredients) {
+      $scope.ingredients = ingredients;
+    });
 });
 
 /* --------------Old jQuery version */
