@@ -24,15 +24,14 @@ angular.module('bartendr', [])
     });
   };
 
-  var toggleIngredient = function() {
-    var ing = this.toggle;
+  var toggleIngredient = function($scope) {
+    var ing = $scope.toggle;
     return $http({
       method: 'POST',
       url: '/ingredients',
       data: { ingredient:ing }
     })
     .then(function(res){
-      console.log(res);
       return res.data;
     });
   };
@@ -52,7 +51,12 @@ angular.module('bartendr', [])
     .then(function(ingredients) {
       $scope.ingredients = ingredients;
     });
-  $scope.toggleIngredient = Ingredients.toggleIngredient;  
+  $scope.toggleIngredient = function(){
+    Ingredients.toggleIngredient($scope)
+      .then(function(ingredients) {
+        $scope.ingredients = ingredients;
+      });
+  };
 });
 
 /* --------------Old jQuery version */

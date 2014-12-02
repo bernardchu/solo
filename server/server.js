@@ -41,7 +41,8 @@ var toggleIngredient = function(req, res) {
     if (err) {
       throw (err);
     }
-    res.send(ing + ' updated.');
+    // res.send(ing + ' updated.');
+    getIngredients(req, res);
   });
 };
 
