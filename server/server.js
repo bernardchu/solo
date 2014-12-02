@@ -80,7 +80,7 @@ var getIngredients = function(type, req, res) {
 
 var getDrinks = function(req, res) {
   var drinksQueryString = " \
-    select d.name from drinks d \
+    select d.name, d.instructions from drinks d \
     left join \
     (select di.drink_id as did, count(*) as num_in_stock \
     from drink_ingredient di join ingredients i \

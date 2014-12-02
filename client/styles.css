@@ -11,6 +11,15 @@ select {
   display:block;
 }
 
+.instructions {
+  display:none;
+  list-style-type: none;
+}
+
+.drink:hover{
+  cursor:pointer;
+}
+
 #ingredientsPane {
   float:left;
   width:30%;

@@ -74,9 +74,14 @@ var app = {
   populateDrinks: function(data) {
     $('#drinks').children().remove();
     for (var i = 0; i < data.length; i++) {
-      var drink = '<li>' + data[i].name + '</li>'
+      var drink = '<li class="drink" onclick=app.toggleInstructions($(this))>' + data[i].name + '</li>';
+      var instructions = '<li class="instructions">' + data[i].instructions + '</li>';
       $('#drinks').append(drink);
+      $('#drinks').append(instructions);
     }
+  },
+  toggleInstructions: function(el) {
+    el.next().slideToggle();
   },
   newRecipe: function() {
     var ingredients = $('#recipe').val();
