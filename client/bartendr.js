@@ -1,6 +1,7 @@
 angular.module('bartendr', [])
 .factory('Drinks', function($http) {
   var getDrinks = function() {
+    console.log('getting drinks');
     return $http({
       method: 'GET',
       url: '/drinks'
@@ -83,13 +84,13 @@ angular.module('bartendr', [])
     newIngredient: newIngredient
   };
 })
-.controller('DrinkController', function($scope, Drinks) {
+.controller('DrinkController', function($rootScope, Drinks) {
   Drinks.getDrinks()
     .then(function(drinks) {
-      $scope.drinks = drinks;
+      $rootScope.drinks = drinks;
     });
 })
-.controller('IngredientController',function($scope, Ingredients) {
+.controller('IngredientController',function($rootScope, $scope, Ingredients, Drinks) {
   Ingredients.getIngredients()
     .then(function(ingredients) {
       $scope.ingredients = ingredients;
@@ -98,6 +99,10 @@ angular.module('bartendr', [])
     Ingredients.toggleIngredient($scope)
       .then(function(ingredients) {
         $scope.ingredients = ingredients;
+        Drinks.getDrinks()
+          .then(function(drinks) {
+            $rootScope.drinks = drinks;
+          });
       });
   };
   $scope.newIngredient = function(){
@@ -107,7 +112,7 @@ angular.module('bartendr', [])
       });
   };
 })
-.controller('RecipeController', function($scope, Ingredients, Drinks) {
+.controller('RecipeController', function($rootScope, $scope, Ingredients, Drinks) {
   Ingredients.getIngredients()
     .then(function(ingredients) {
       $scope.ingredients = ingredients;
@@ -115,7 +120,8 @@ angular.module('bartendr', [])
   $scope.newRecipe = function() {
     Drinks.postDrink($scope)
       .then(function(drinks) {
-        console.log(drinks)
+        console.log(drinks);
+        $rootScope.drinks = drinks;
       });
   };
 });
