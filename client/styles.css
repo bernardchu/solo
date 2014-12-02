@@ -1,10 +1,14 @@
 body {
-  width:80%;
+  width:75%;
   margin:auto;
 }
 
 h1 {
   
+}
+
+button {
+  display:block;
 }
 
 select {
@@ -22,12 +26,12 @@ select {
 
 #ingredientsPane {
   float:left;
-  width:30%;
+  width:45%;
 }
 
 #drinksPane {
   float:right;
-  width:40%;
+  width:55%;
 }
 
 #instructions, #recipe {
