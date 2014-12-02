@@ -1,4 +1,4 @@
-angular.module('bartendr', [])
+angular.module('bartendr', ['ngMaterial'])
 .factory('Drinks', function($http) {
   var getDrinks = function() {
     return $http({
@@ -68,14 +68,16 @@ angular.module('bartendr', [])
 
   var newIngredient = function() {
     var ing = prompt('What is the new ingredient\'s name?');
-    return $http({
-      method: 'POST',
-      url: '/ingredients/new',
-      data: { ingredient:ing }
-    })
-    .then(function(res){
-      return res.data;
-    });
+    if (ing) {
+      return $http({
+        method: 'POST',
+        url: '/ingredients/new',
+        data: { ingredient:ing }
+      })
+      .then(function(res){
+        return res.data;
+      });
+    }
   };
 
   var nextIngredient = function() {
