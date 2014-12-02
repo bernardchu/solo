@@ -20,12 +20,25 @@ angular.module('bartendr', [])
       url: '/ingredients'
     })
     .then(function(res){
+      return res.data;
+    });
+  };
+
+  var toggleIngredient = function() {
+    var ing = this.toggle;
+    return $http({
+      method: 'POST',
+      url: '/ingredients',
+      data: { ingredient:ing }
+    })
+    .then(function(res){
       console.log(res);
       return res.data;
     });
   };
   return {
-    getIngredients: getIngredients
+    getIngredients: getIngredients,
+    toggleIngredient: toggleIngredient
   };
 })
 .controller('DrinkController', function($scope, Drinks) {
@@ -39,7 +52,7 @@ angular.module('bartendr', [])
     .then(function(ingredients) {
       $scope.ingredients = ingredients;
     });
-    console.log
+  $scope.toggleIngredient = Ingredients.toggleIngredient;  
 });
 
 /* --------------Old jQuery version */

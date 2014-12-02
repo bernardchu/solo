@@ -17,15 +17,18 @@ app.set('port', 3000);
 
 // Logging and parsing
 app.use(morgan('dev'));
-app.use('/ingredients', parser.urlencoded());
-app.use('/drinks', parser.urlencoded());
+app.use(parser.urlencoded({extended: true}));
+app.use(parser.json());
+// app.use('/drinks', parser.urlencoded({extended: true}));
 
 
 // GET and POST functions
 var toggleIngredient = function(req, res) {
-  // console.log(req.body);
-  for (var key in req.body) {
-    var ing = key;
+  console.log(req.body);
+  var ing = req.body.ingredient;
+  if (!ing) {
+    res.send(400,'Bad request');
+    return; 
   }
 
   var toggleQueryString = "\
