@@ -1,7 +1,6 @@
 angular.module('bartendr', [])
 .factory('Drinks', function($http) {
   var getDrinks = function() {
-    console.log('getting drinks');
     return $http({
       method: 'GET',
       url: '/drinks'
@@ -84,11 +83,16 @@ angular.module('bartendr', [])
     newIngredient: newIngredient
   };
 })
-.controller('DrinkController', function($rootScope, Drinks) {
+.controller('DrinkController', function($rootScope, $scope, Drinks) {
   Drinks.getDrinks()
     .then(function(drinks) {
       $rootScope.drinks = drinks;
     });
+  $scope.toggleInstructions = function(element) {
+    console.log(element);
+    $scope.instructions = element.instructions;
+  };
+  $scope.instructions = 'Instructions will display here.'
 })
 .controller('IngredientController',function($rootScope, $scope, Ingredients, Drinks) {
   Ingredients.getIngredients()

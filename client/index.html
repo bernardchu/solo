@@ -21,6 +21,7 @@
         <li ng-repeat="ingredient in ingredients | filter:{'in_stock':1}">{{ ingredient.name }}</li>
       </div>
       
+      
       <h4>Update your inventory (add or remove):</h4>
       <select class="allIngredients" ng-model="toggle">
         <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
@@ -33,8 +34,10 @@
     <div id="drinksPane" ng-controller="DrinkController">
       <h4>Drinks you can make:</h4>
       <div id="drinks">
-        <li ng-repeat="drink in drinks">{{ drink.name }}</li>
+        <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
       </div>
+      <h6>Click on a drink above to display instructions below</h6>
+      {{ instructions }}
 
       <div id="recipePane" ng-controller="RecipeController">
         <h4>Add a new drink recipe:</h4>
