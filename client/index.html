@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>bartendr</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <!-- dependencies -->
     <script src="./bower_components/angular/angular.min.js"></script>
@@ -13,68 +13,69 @@
     <script src="/bower_components/angular-material/angular-material.js"></script>
     <script src="bartendr.js"></script>
   </head>
+  <md-content>
   <body>
+    <div id="container" layout="column">
+      <h1>bartendr</h1>
+      <div id="panes" layout="row" layout-align="space-around start">
+        <md-card id="ingredientsPane" flex="40" ng-controller="IngredientController">
 
-    <h1>bartendr</h1>
-    
-    <div id="ingredientsPane" ng-controller="IngredientController">
+          <h2>Ingredients in stock:</h2>
+          
+          <div id="stock">
+            <li ng-repeat="ingredient in ingredients | filter:{'in_stock':1}">{{ ingredient.name }}</li>
+          </div>
+          
+          
+          <h2>Update your inventory (add or remove):</h2>
+          <select class="allIngredients" ng-model="toggle">
+            <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
+          </select>
+          <md-button class="md-raised md-primary" ng-click="toggleIngredient()"/>Toggle</md-button>
+          <br/><br/>
+          <md-button class="md-raised md-primary" ng-click="newIngredient()">New ingredient...</md-button>
 
-      <h2>Ingredients in stock:</h2>
-      
-      <div id="stock">
-        <li ng-repeat="ingredient in ingredients | filter:{'in_stock':1}">{{ ingredient.name }}</li>
+          <h4>What to buy next</h4>
+          <table ng-controller="NextIngredientController">
+            <thead>
+              <tr>
+                <th>Ingredient</th><th># of drinks unlocked</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="ingredient in nextIngredient">
+                <td>{{ ingredient.name }}</td><td>{{ ingredient.additional_drinks }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-card>
+
+
+        <md-card id="drinksPane" flex="35" ng-controller="DrinkController">
+          <h2>Drinks you can make:</h2>
+          <div id="drinks">
+            <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
+          </div>
+          <h4>Click on a drink above to display instructions below</h4>
+          {{ instructionsDisplay }}
+
+          <div id="recipePane" ng-controller="RecipeController">
+            <h2>Add a new drink recipe:</h2>
+
+            <h4>Name your drink</h4>
+            <input id="drinkName" type="text" maxlength="100" ng-model="drinkName"/>
+
+            <h4>Add ingredients</h4>
+            <select id="recipe" class="allIngredients" multiple ng-model="recipeIngredients">
+              <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
+            </select>
+            <br/>
+            <textarea id="instructions" ng-model="instructions">Recipe instructions here</textarea><br/>
+            <button id="submitRecipe" ng-click="newRecipe()">Submit</button>
+          </div>
+        </md-card> 
       </div>
-      
-      
-      <h2>Update your inventory (add or remove):</h2>
-      <select class="allIngredients" ng-model="toggle">
-        <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
-      </select>
-      <button ng-click="toggleIngredient()"/>Toggle</button>
-      <button ng-click="newIngredient()">Add a new ingredient type</button>
-
-      <h4>What to buy next</h4>
-      <table ng-controller="NextIngredientController">
-        <thead>
-          <tr>
-            <th>Ingredient</th><th># of drinks unlocked</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="ingredient in nextIngredient">
-            <td>{{ ingredient.name }}</td><td>{{ ingredient.additional_drinks }}</td>
-          </tr>
-        </tbody>
-      </table>
-      
-
     </div>
-
-
-    <div id="drinksPane" ng-controller="DrinkController">
-      <h2>Drinks you can make:</h2>
-      <div id="drinks">
-        <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
-      </div>
-      <h4>Click on a drink above to display instructions below</h4>
-      {{ instructionsDisplay }}
-
-      <div id="recipePane" ng-controller="RecipeController">
-        <h2>Add a new drink recipe:</h2>
-
-        <h4>Name your drink</h4>
-        <input id="drinkName" type="text" maxlength="100" ng-model="drinkName"/>
-
-        <h4>Add ingredients</h4>
-        <select id="recipe" class="allIngredients" multiple ng-model="recipeIngredients">
-          <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
-        </select>
-        <br/>
-        <textarea id="instructions" ng-model="instructions">Recipe instructions here</textarea><br/>
-        <button id="submitRecipe" ng-click="newRecipe()">Submit</button>
-      </div>
-    </div> 
-
-
   </body>
+</md-content>
 </html>
