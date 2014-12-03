@@ -20,14 +20,22 @@
       <div id="panes" layout="row" layout-align="space-around start">
         <md-card id="ingredientsPane" flex="40" ng-controller="IngredientController">
 
-          <h2>Ingredients in stock:</h2>
+          <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">
+              <span>Ingredients in stock:</span>
+            </h1>
+          </md-toolbar>
           
           <div id="stock">
             <li ng-repeat="ingredient in ingredients | filter:{'in_stock':1}">{{ ingredient.name }}</li>
           </div>
           
-          
-          <h2>Update your inventory (add or remove):</h2>
+          <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">
+              <span>Update your inventory (add or remove):</span>
+            </h1>
+          </md-toolbar>
+
           <select class="allIngredients" ng-model="toggle">
             <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
           </select>
@@ -52,7 +60,11 @@
 
 
         <md-card id="drinksPane" flex="45" ng-controller="DrinkController">
-          <h2>Drinks you can make:</h2>
+          <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">
+              <span>Drinks you can make</span>
+            </h1>
+          </md-toolbar>
           <div id="drinks">
             <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
           </div>
@@ -60,7 +72,11 @@
           {{ instructionsDisplay }}
 
           <div id="recipePane" ng-controller="RecipeController">
-            <h2>Add a new drink recipe:</h2>
+            <md-toolbar class="md-theme-light">
+              <h1 class="md-toolbar-tools">
+                <span>Add a new drink recipe</span>
+              </h1>
+            </md-toolbar>
             <!-- <h4>Name your drink</h4> -->
             <md-text-float label="Name your drink" id="drinkName" type="text" maxlength="100" ng-model="drinkName"></md-text-float>
 
