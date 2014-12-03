@@ -28,6 +28,10 @@ select, #recipe {
     cursor:pointer;
 }
 
+#recipe {
+  height: 100px;
+}
+
 #instructions {
   margin:10px;
   width: 80%;

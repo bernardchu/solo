@@ -22,7 +22,7 @@
         <!-- </h1> -->
       </md-subheader>
       <div id="panes" layout="row" layout-align="space-around start">
-        <md-card id="ingredientsPane" flex="40" ng-controller="IngredientController">
+        <md-card id="ingredientsPane" flex="50" ng-controller="IngredientController">
 
           <md-toolbar class="md-theme-light">
             <h1 class="md-toolbar-tools">
@@ -91,7 +91,7 @@
           <!-- <div id="drinks">
             <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
           </div> -->
-          <h4>Click on a drink above to display instructions below</h4>
+          <!-- <h4>Click on a drink above to display instructions below</h4> -->
           <md-card>{{ instructionsDisplay }}</md-card>
 
           <div id="recipePane" ng-controller="RecipeController">
@@ -103,7 +103,7 @@
             <!-- <h4>Name your drink</h4> -->
             <md-text-float label="Name your drink" id="drinkName" type="text" maxlength="100" ng-model="drinkName"></md-text-float>
 
-            <h4>Add ingredients</h4>
+            <!-- <h4>Add ingredients</h4> -->
             <select id="recipe" class="allIngredients" multiple ng-model="recipeIngredients">
               <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
             </select>
