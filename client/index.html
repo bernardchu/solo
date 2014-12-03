@@ -26,9 +26,15 @@
             </h1>
           </md-toolbar>
           
-          <div id="stock">
-            <li ng-repeat="ingredient in ingredients | filter:{'in_stock':1}">{{ ingredient.name }}</li>
-          </div>
+          <md-list>
+            <md-item ng-repeat="ingredient in ingredients | filter:{'in_stock':1}">
+              <md-item-content>
+                <div class="md-tile-content">
+                  <h4>{{ ingredient.name }}</h4>
+                </div>
+              </md-item-content>
+            </md-item>
+          </md-list>
           
           <md-toolbar class="md-theme-light">
             <h1 class="md-toolbar-tools">
@@ -65,9 +71,18 @@
               <span>Drinks you can make</span>
             </h1>
           </md-toolbar>
-          <div id="drinks">
+          <md-list>
+            <md-item ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">
+              <md-item-content>
+                <div class="md-tile-content">
+                  <h4>{{ drink.name }}</h4>
+                </div>
+              </md-item-content>
+            </md-item>
+          </md-list>
+          <!-- <div id="drinks">
             <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
-          </div>
+          </div> -->
           <h4>Click on a drink above to display instructions below</h4>
           {{ instructionsDisplay }}
 
