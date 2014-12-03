@@ -51,7 +51,7 @@
         </md-card>
 
 
-        <md-card id="drinksPane" flex="35" ng-controller="DrinkController">
+        <md-card id="drinksPane" flex="45" ng-controller="DrinkController">
           <h2>Drinks you can make:</h2>
           <div id="drinks">
             <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
@@ -61,9 +61,8 @@
 
           <div id="recipePane" ng-controller="RecipeController">
             <h2>Add a new drink recipe:</h2>
-
-            <h4>Name your drink</h4>
-            <input id="drinkName" type="text" maxlength="100" ng-model="drinkName"/>
+            <!-- <h4>Name your drink</h4> -->
+            <md-text-float label="Name your drink" id="drinkName" type="text" maxlength="100" ng-model="drinkName"></md-text-float>
 
             <h4>Add ingredients</h4>
             <select id="recipe" class="allIngredients" multiple ng-model="recipeIngredients">
