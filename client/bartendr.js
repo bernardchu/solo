@@ -119,6 +119,10 @@ angular.module('bartendr', ['ngMaterial'])
         Drinks.getDrinks()
           .then(function(drinks) {
             $rootScope.drinks = drinks;
+            Ingredients.nextIngredient()
+              .then(function(ingredients) {
+                $rootScope.nextIngredient = ingredients;
+              });
           });
       });
   };
@@ -139,6 +143,10 @@ angular.module('bartendr', ['ngMaterial'])
       .then(function(drinks) {
         console.log(drinks);
         $rootScope.drinks = drinks;
+        Ingredients.nextIngredient()
+          .then(function(ingredients) {
+            $rootScope.nextIngredient = ingredients;
+          });
       });
   };
 })
