@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require('./db');
+var db = require('./server/db');
 
 
 // Middleware
@@ -204,7 +204,7 @@ app.get('/drinks', getDrinks);
 app.post('/drinks', postDrink);
 
 // Serve the client files
-app.use(express.static(__dirname + "../../client"));
+app.use(express.static(__dirname + "/client"));
 
 // If we are being run directly, run the server.
 if (!module.parent) {
