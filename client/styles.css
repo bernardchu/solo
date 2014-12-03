@@ -12,9 +12,9 @@
   cursor:pointer;
 }
 
-select {
+select, #recipe {
     padding:3px;
-    margin: 0;
+    margin: 10px;
     border-radius:4px;
     -webkit-box-shadow: 
         0 3px 0 #ccc,
@@ -26,4 +26,10 @@ select {
     display: inline-block;
     -webkit-appearance:none; 
     cursor:pointer;
+}
+
+#instructions {
+  margin:10px;
+  width: 80%;
+  height: 80px;
 }
