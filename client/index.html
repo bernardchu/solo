@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>bartendr</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <!-- dependencies -->
     <script src="./bower_components/angular/angular.min.js"></script>
@@ -16,13 +16,17 @@
   <md-content>
   <body>
     <div id="container" layout="column">
-      <h1>bartendr</h1>
+      <md-subheader class="md-primary">
+        <!-- <h1 class="md-toolbar-tools"> -->
+          <span id="heading">bartendr</span>
+        <!-- </h1> -->
+      </md-subheader>
       <div id="panes" layout="row" layout-align="space-around start">
         <md-card id="ingredientsPane" flex="40" ng-controller="IngredientController">
 
           <md-toolbar class="md-theme-light">
             <h1 class="md-toolbar-tools">
-              <span>Ingredients in stock:</span>
+              <span>Inventory</span>
             </h1>
           </md-toolbar>
           
@@ -36,11 +40,11 @@
             </md-item>
           </md-list>
           
-          <md-toolbar class="md-theme-light">
+          <md-subheader class="md-theme-light">
             <h1 class="md-toolbar-tools">
-              <span>Update your inventory (add or remove):</span>
+              <span id="updateInventory">Update your inventory (add or remove):</span>
             </h1>
-          </md-toolbar>
+          </md-subheader>
 
           <select class="allIngredients" ng-model="toggle">
             <option ng-repeat="ingredient in ingredients">{{ ingredient.name }}</option>
@@ -49,7 +53,11 @@
           <br/><br/>
           <md-button class="md-raised md-primary" ng-click="newIngredient()">New ingredient...</md-button>
 
-          <h4>What to buy next</h4>
+          <md-subheader class="md-theme-light">
+            <h1 class="md-toolbar-tools">
+              <span id="buyNext">What to buy next</span>
+            </h1>
+          </md-subheader>
           <table ng-controller="NextIngredientController">
             <thead>
               <tr>
@@ -84,7 +92,7 @@
             <li ng-repeat="drink in drinks" ng-click="toggleInstructions(drink)">{{ drink.name }}</li>
           </div> -->
           <h4>Click on a drink above to display instructions below</h4>
-          {{ instructionsDisplay }}
+          <md-card>{{ instructionsDisplay }}</md-card>
 
           <div id="recipePane" ng-controller="RecipeController">
             <md-toolbar class="md-theme-light">
@@ -101,7 +109,7 @@
             </select>
             <br/>
             <textarea id="instructions" ng-model="instructions">Recipe instructions here</textarea><br/>
-            <button id="submitRecipe" ng-click="newRecipe()">Submit</button>
+            <md-button class="md-raised md-primary" id="submitRecipe" ng-click="newRecipe()">Submit</md-button>
           </div>
         </md-card> 
       </div>

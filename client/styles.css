@@ -1,44 +1,9 @@
-body {
-  width:75%;
-  margin:auto;
-}
-
-h1 {
-  
-}
-
-button {
-  display:block;
-}
-
-select {
-  display:block;
-}
-
-thead th {
+#heading {
   font-weight:800;
+  font-size:3em;
 }
 
-.instructions {
-  display:none;
-  list-style-type: none;
-}
-
-.drink:hover{
-  cursor:pointer;
-}
-
-#ingredientsPane {
-  float:left;
-  width:45%;
-}
-
-#drinksPane {
-  float:right;
-  width:55%;
-}
-
-#instructions, #recipe {
-  width: 300px;
-  height: 150px;
+#updateInventory, #buyNext {
+  font-weight:600;
+  font-size:1.5em;
 }
