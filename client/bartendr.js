@@ -110,12 +110,12 @@ angular.module('bartendr', ['ngMaterial'])
 .controller('IngredientController',function($rootScope, $scope, Ingredients, Drinks) {
   Ingredients.getIngredients()
     .then(function(ingredients) {
-      $scope.ingredients = ingredients;
+      $rootScope.ingredients = ingredients;
     });
   $scope.toggleIngredient = function(){
     Ingredients.toggleIngredient($scope)
       .then(function(ingredients) {
-        $scope.ingredients = ingredients;
+        $rootScope.ingredients = ingredients;
         Drinks.getDrinks()
           .then(function(drinks) {
             $rootScope.drinks = drinks;
@@ -129,14 +129,14 @@ angular.module('bartendr', ['ngMaterial'])
   $scope.newIngredient = function(){
     Ingredients.newIngredient()
       .then(function(ingredients) {
-        $scope.ingredients = ingredients;
+        $rootScope.ingredients = ingredients;
       });
   };
 })
 .controller('RecipeController', function($rootScope, $scope, Ingredients, Drinks) {
   Ingredients.getIngredients()
     .then(function(ingredients) {
-      $scope.ingredients = ingredients;
+      $rootScope.ingredients = ingredients;
     });
   $scope.newRecipe = function() {
     Drinks.postDrink($scope)
