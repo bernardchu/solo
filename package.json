@@ -1,0 +1,28 @@
+{
+  "name": "bartendr",
+  "version": "1.0.0",
+  "description": "bartending helper app",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "body-parser": "^1.9.3",
+    "express": "^4.10.4",
+    "grunt-nodemon": "^0.3.0",
+    "grunt-shell": "^1.1.1",
+    "morgan": "^1.5.0",
+    "mysql": "^2.5.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bernardchu/solo.git"
+  },
+  "author": "Bernard Chu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bernardchu/solo/issues"
+  },
+  "homepage": "https://github.com/bernardchu/solo"
+}
